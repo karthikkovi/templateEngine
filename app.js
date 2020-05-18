@@ -13,7 +13,7 @@ const render = require("./lib/htmlRenderer");
 const employees = [];
 
 const manager = function() {
-    return new promise ((res, rej) => {
+    return new Promise ((res, rej) => {
         inquirer.prompt([
             {
                 message: "Enter manager name - ",
@@ -39,7 +39,7 @@ const manager = function() {
 
 
 const employee = function() {
-    return new promise ((res, rej) => {
+    return new Promise ((res, rej) => {
         inquirer.prompt([
             {
                 message: "Do you wish to add an employee or intern",
@@ -54,7 +54,7 @@ const employee = function() {
         ]).then(data => {
             switch (data.type) {
                 case "Engineer":
-                    return new promise ((res, rej) => {
+                    return new Promise ((res, rej) => {
                         inquirer.prompt([
                             {
                                 message: "What is the Engineer's name - ",
@@ -78,7 +78,7 @@ const employee = function() {
                     })
                 break;
                 case "Intern":
-                    return new promise ((res, rej) => {
+                    return new Promise ((res, rej) => {
                         inquirer.prompt([
                             {
                                 message: "What is the Engineer's name - ",
@@ -109,13 +109,15 @@ const employee = function() {
     })
 }
 
+let html = render(employees)
+
 fs.writeFile(outputPath, html, (err) => {
     if (err) throw err;
     console.log(`HTML file created in ${outputPath}`)
 })
 
 function init() {
-    return new promise((res, rej) => {
+    return new Promise((res, rej) => {
         inquirer.prompt([{
             message: "Do you wish to add a manager or an employee",
                 type: "list",
