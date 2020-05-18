@@ -104,6 +104,10 @@ async function init() {
         } else {
             let html = render(employees)
 
+            if (!fs.existsSync(OUTPUT_DIR)) {
+                fs.mkdirSync(OUTPUT_DIR);
+            }
+
             fs.writeFile(outputPath, html, (err) => {
                 if (err) {
                     throw err
