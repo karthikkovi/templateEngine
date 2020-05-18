@@ -115,6 +115,10 @@ async function init() {
                 console.log(`File is written at ${outputPath}`)
                 newEntry = true;
             })
+
+            if (newEntry) {
+                break;
+            }
         }
     }
 }
